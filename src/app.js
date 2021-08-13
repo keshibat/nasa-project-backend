@@ -1,6 +1,6 @@
 const express = require('express');
 
-const planetRouter = require('./routes/planets/planets.router');
+const planetsRouter = require('./routes/planets/planets.router');
 
 const app = express();
 app.use(express.json());
