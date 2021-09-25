@@ -93,13 +93,13 @@ async function getLatestFlightNumber() {
   return latestLaunch.flightNumber;
 }
 
-async function getAllLaunches() {
+async function getAllLaunches(skip, limit) {
   return await launchesDatabase
-  .find({}, {'__id': 0, '__v': 0});
+  .find({}, {'__id': 0, '__v': 0})
+  .sort({ flightNumber: 1 })
+  .skip(skip)
+  .limit(limit);
 }
-
-
-
 
 async function saveLaunch(launch) {
   await launchesDatabase.findOneAndUpdate({
@@ -137,7 +137,7 @@ async function abortLaunchbyId(launchId) {
     upcoming: false,
     success: false,
   });
-  
+
   return aborted.modifiedCount === 1;
 }
 
