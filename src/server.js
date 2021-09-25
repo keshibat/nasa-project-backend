@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 
 const app = require('./app');
-const { loadPlanetsData } = require('./models/planets.models');
+const { loadPlanetsData } = require('./models/planets.model');
+const { loadLaunchData } = require('./models/launches.model');
 
 const PORT = process.env.PORT || 8000;
 
@@ -27,6 +28,7 @@ async function StartServer() {
   server.listen(PORT, () => {
     console.log(`Listening on port ${PORT}...`);
   });
+  await loadLaunchData();
 }
 
 StartServer();
